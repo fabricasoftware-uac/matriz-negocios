@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: #F9FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --primary: #0F172A;
+  --primary-foreground: #F8FAFC;
+  --muted: #F1F4F9;
+  --muted-foreground: #64748B;
+  --border: #EDF1F7;
+  --accent: #2563EB;
+  --accent-foreground: #FFFFFF;
+  --ring: #6366F1;
+}
+
+.dark,
+[data-theme="dark"] {
+  --background: #09090b;
+  --foreground: #f8fafc;
+  --card: #111827;
+  --card-foreground: #f8fafc;
+  --primary: #f8fafc;
+  --primary-foreground: #0f172a;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --ring: #60a5fa;
+}
+
+/* Modo Alto Contraste WCAG AAA */
+[data-contrast="high-contrast"] {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #18181b;
+  --border: #000000;
+  --accent: #0000ee;
+  --accent-foreground: #ffffff;
+  --ring: #000000;
+}
+
+[data-contrast="high-contrast"].dark,
+[data-contrast="high-contrast"][data-theme="dark"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --muted: #18181b;
+  --muted-foreground: #e4e4e7;
+  --border: #ffffff;
+  --accent: #60a5fa;
+  --accent-foreground: #000000;
+  --ring: #ffffff;
+}
+
+/* Escalado de fuentes de accesibilidad */
+html[data-font-size="normal"] {
+  font-size: 100%;
+}
+
+html[data-font-size="large"] {
+  font-size: 115%;
+}
+
+html[data-font-size="extra-large"] {
+  font-size: 130%;
+}
+
+/* Tipografía amigable para dislexia / legibilidad reforzada */
+html[data-dyslexic="true"] body,
+html[data-dyslexic="true"] button,
+html[data-dyslexic="true"] input,
+html[data-dyslexic="true"] select,
+html[data-dyslexic="true"] textarea {
+  font-family: "OpenDyslexic", "Comic Sans MS", "Chalkboard SE", "Segoe UI", sans-serif !important;
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.08em !important;
+  line-height: 1.65 !important;
+}
+
+/* Reducción estricta de movimiento */
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Foco visible estricto para navegación con teclado WCAG AAA */
+:focus-visible {
+  outline: 3px solid var(--ring) !important;
+  outline-offset: 3px !important;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+/* Bordes en alto contraste */
+[data-contrast="high-contrast"] .border,
+[data-contrast="high-contrast"] [class*="border-"] {
+  border-width: 2px !important;
+}
+
+/* Reglas de Impresión Ejecutiva / Exportación PDF */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  header, nav, [role="banner"], [role="tablist"], .fixed {
+    display: none !important;
+  }
+  #printable-dossier {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1.5cm !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+}
+
